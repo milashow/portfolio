@@ -12,7 +12,7 @@
 </head>
 <body class="min-h-screen flex flex-col bg-white dark:bg-gray-900 transition-colors duration-700">
     <header class="bg-white/95 dark:bg-gray-900/95 shadow-lg sticky top-0 z-50 backdrop-blur-sm">
-        <nav class="container mx-auto px-4 md:px-0 flex justify-between items-center py-4">
+        <nav class="container mx-auto px-4 flex justify-between items-center py-4">
             
             <a href="/" class="flex items-center">
                 <img src="/assets/images/logo.png" alt="SHIRE logo" class="h-36 w-auto">
@@ -24,13 +24,27 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
             </button>
-            <!-- Navigation links -->
-            <div id="nav-menu" class="hidden md:flex md:flex-row md:items-center md:space-x-8 absolute md:static top-20 left-0 w-full md:w-auto bg-white/95 dark:bg-gray-900/95 md:bg-transparent md:dark:bg-transparent z-50 md:z-auto shadow-lg md:shadow-none rounded-b-2xl md:rounded-none transition-all duration-300">
+
+            <!-- Desktop Navigation Links - Hidden on mobile -->
+            <div class="hidden md:flex md:flex-row md:items-center md:space-x-4 md:ml-auto">
+                <a href="/" class="nav-link">Home</a>
                 <a href="/projects" class="nav-link">Projects</a>
                 <a href="/courses" class="nav-link">Courses</a>
                 <a href="/about" class="nav-link">About</a>
                 <a href="/contact" class="nav-link">Contact</a>
             </div>
+
+            <!-- Mobile Navigation Menu (Dropdown) - Only visible on mobile -->
+            <div id="nav-menu" class="hidden absolute top-full right-0 mt-2 w-48 bg-white dark:bg-gray-900 shadow-lg rounded-md p-2 md:hidden opacity-0 scale-95 transition-all duration-200 ease-in-out transform origin-top-right">
+              <nav class="flex flex-col space-y-1">
+                  <a href="/" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Home</a>
+                  <a href="/projects" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Projects</a>
+                  <a href="/courses" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Courses</a>
+                  <a href="/about" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">About</a>
+                  <a href="/contact" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Contact</a>
+              </nav>
+            </div>
+
         </nav>
     </header>
     <main class="flex-grow">
@@ -42,37 +56,50 @@
       Unlock your potential with hands-on, practical courses designed to help you thrive in the digital world.
     </p>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-      <!-- Digital Marketing -->
+      <!-- App Development -->
       <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-transform duration-300 animate-fade-in" style="animation-delay:0.2s;animation-fill-mode:forwards;">
-        <svg class="w-12 h-12 text-primary-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-        <h2 class="text-xl font-bold mb-2">Digital Marketing</h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-4">Master online marketing, SEO, and growth strategies to boost your business or personal brand.</p>
+        <img src="/assets/icons/appicon.png" alt="App Development icon" class="w-12 h-12 mb-4">
+        <h2 class="text-xl font-bold mb-2">App Development</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Building modern, scalable mobile and web apps for real-world impact.</p>
+        <a href="/contact" class="inline-block px-6 py-2 bg-primary-600 text-white rounded-full font-semibold shadow hover:bg-primary-700 transition-all duration-300">Join Now</a>
+      </div>
+      <!-- Website Creation -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-transform duration-300 animate-fade-in" style="animation-delay:0.3s;animation-fill-mode:forwards;">
+        <img src="/assets/icons/webicon.png" alt="Website Creation icon" class="w-12 h-12 mb-4">
+        <h2 class="text-xl font-bold mb-2">Website Creation</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Designing and developing beautiful, responsive websites for businesses and creators.</p>
         <a href="/contact" class="inline-block px-6 py-2 bg-primary-600 text-white rounded-full font-semibold shadow hover:bg-primary-700 transition-all duration-300">Join Now</a>
       </div>
       <!-- Notion Database -->
-      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-transform duration-300 animate-fade-in" style="animation-delay:0.3s;animation-fill-mode:forwards;">
-        <svg class="w-12 h-12 text-primary-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="4"/><path d="M7 7h10v10H7z"/></svg>
-        <h2 class="text-xl font-bold mb-2">Notion Database</h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-4">Organize your life and work with advanced Notion techniques, templates, and automations.</p>
-        <a href="/contact" class="inline-block px-6 py-2 bg-primary-600 text-white rounded-full font-semibold shadow hover:bg-primary-700 transition-all duration-300">Join Now</a>
-      </div>
-      <!-- Social Media -->
       <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-transform duration-300 animate-fade-in" style="animation-delay:0.4s;animation-fill-mode:forwards;">
-        <svg class="w-12 h-12 text-primary-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8a2 2 0 012-2h2M12 15v-6m0 0l-2 2m2-2l2 2"/></svg>
-        <h2 class="text-xl font-bold mb-2">Social Media</h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-4">Grow your audience and influence with proven social media strategies and content planning.</p>
+        <img src="/assets/icons/notion.png" alt="Notion icon" class="w-12 h-12 mb-4">
+        <h2 class="text-xl font-bold mb-2">Notion Database Systems</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Custom Notion templates and automations for productivity, business, and personal use.</p>
         <a href="/contact" class="inline-block px-6 py-2 bg-primary-600 text-white rounded-full font-semibold shadow hover:bg-primary-700 transition-all duration-300">Join Now</a>
       </div>
-      <!-- Content Producing -->
+      <!-- Digital Marketing -->
       <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-transform duration-300 animate-fade-in" style="animation-delay:0.5s;animation-fill-mode:forwards;">
-        <svg class="w-12 h-12 text-primary-600 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9"/><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 3.5a2.121 2.121 0 113 3L7 19.5 2 21l1.5-5L16.5 3.5z"/></svg>
-        <h2 class="text-xl font-bold mb-2">Content Producing</h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-4">Learn to create engaging content for blogs, video, and social media that captivates your audience.</p>
+        <img src="/assets/icons/digital_marketing.png" alt="Digital Marketing icon" class="w-12 h-12 mb-4">
+        <h2 class="text-xl font-bold mb-2">Digital Marketing Campaigns</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Driving growth and engagement with data-driven digital marketing strategies.</p>
         <a href="/contact" class="inline-block px-6 py-2 bg-primary-600 text-white rounded-full font-semibold shadow hover:bg-primary-700 transition-all duration-300">Join Now</a>
       </div>
-      <!-- Add more courses as needed -->
+      <!-- Content Creation -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-transform duration-300 animate-fade-in" style="animation-delay:0.6s;animation-fill-mode:forwards;">
+        <img src="/assets/icons/cc.png" alt="Content Creation icon" class="w-12 h-12 mb-4">
+        <h2 class="text-xl font-bold mb-2">Content Creation</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Producing high-quality content for blogs, video, and social media that captivates audiences.</p>
+        <a href="/contact" class="inline-block px-6 py-2 bg-primary-600 text-white rounded-full font-semibold shadow hover:bg-primary-700 transition-all duration-300">Join Now</a>
+      </div>
+      <!-- Data Visualization -->
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-transform duration-300 animate-fade-in" style="animation-delay:0.7s;animation-fill-mode:forwards;">
+        <img src="/assets/icons/data_icon.png" alt="Data Visualization icon" class="w-12 h-12 mb-4">
+        <h2 class="text-xl font-bold mb-2">Data Visualization</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Creating insightful data visualizations using tools like Excel, Grafana, and web technologies (HTML, CSS, JS).</p>
+        <a href="/contact" class="inline-block px-6 py-2 bg-primary-600 text-white rounded-full font-semibold shadow hover:bg-primary-700 transition-all duration-300">Join Now</a>
+      </div>
     </div>
-    <div class="flex flex-col items-center animate-fade-in" style="animation-delay:0.6s;animation-fill-mode:forwards;">
+    <div class="flex flex-col items-center animate-fade-in" style="animation-delay:0.8s;animation-fill-mode:forwards;">
       <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Ready to start learning?</h3>
       <a href="/contact" class="inline-block px-8 py-4 bg-primary-600 text-white text-lg font-semibold rounded-full shadow-lg hover:bg-primary-700 focus:bg-primary-700 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary-300 animate-bounce-slow mt-2">Contact Me to Enroll</a>
     </div>
@@ -97,23 +124,15 @@
 </style> 
     </main>
     <footer class="bg-transparent py-8">
-        <div class="container flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-xl font-bold text-primary-600 mb-2 md:mb-0">SHIRE</div>
-            <div class="flex space-x-8">
-                <a href="/contact" class="flex items-center text-gray-500 hover:text-primary-600 transition-colors duration-300">
-                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12H8m8 0a4 4 0 11-8 0 4 4 0 018 0zm8 4v1a3 3 0 01-3 3H7a3 3 0 01-3-3v-1"></path></svg>
-                    Contact
-                </a>
-                <a href="/projects" class="flex items-center text-gray-500 hover:text-primary-600 transition-colors duration-300">
-                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-6a2 2 0 012-2h2a2 2 0 012 2v6m-6 0h6"></path></svg>
-                    Projects
-                </a>
-                <a href="/about" class="flex items-center text-gray-500 hover:text-primary-600 transition-colors duration-300">
-                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.485 0 4.797.657 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    About
-                </a>
+        <div class="container flex flex-col items-center gap-4">
+            
+            <a href="/" class="flex items-center">
+                <img src="/assets/images/logo.png" alt="SHIRE logo" class="h-36 w-auto">
+            </a>
+            
+            <div class="text-gray-400 text-sm mt-2 md:mt-0 text-center">
+                &copy; 2025 SHIRE Company. All rights reserved.
             </div>
-            <div class="text-gray-400 text-sm mt-2 md:mt-0">&copy; 2025 Muse Shire. All rights reserved.</div>
         </div>
     </footer>
     <style>
@@ -164,64 +183,71 @@
       // Hamburger menu toggle
       const navToggle = document.getElementById('nav-toggle');
       const navMenu = document.getElementById('nav-menu');
+      const navClose = document.getElementById('nav-close'); // Get the close button (if it exists)
+
+      // Function to open the mobile menu with transition
+      const openMobileMenu = () => {
+        navMenu.classList.remove('hidden');
+        // Use requestAnimationFrame to allow the browser to render the display change before triggering the transition
+        requestAnimationFrame(() => {
+          navMenu.classList.remove('opacity-0', 'scale-95');
+          navMenu.classList.add('opacity-100', 'scale-100');
+        });
+      };
+
+      // Function to close the mobile menu with transition
+      const closeMobileMenu = () => {
+        navMenu.classList.remove('opacity-100', 'scale-100');
+        navMenu.classList.add('opacity-0', 'scale-95');
+        // Wait for the transition to finish before hiding the element completely
+        navMenu.addEventListener('transitionend', function handler() {
+          navMenu.classList.add('hidden');
+          navMenu.removeEventListener('transitionend', handler);
+        }, { once: true }); // Use { once: true } to auto-remove the listener
+      };
 
       const toggleMobileMenu = () => {
-        const isHidden = navMenu.classList.contains('hidden');
-        
-        if (window.innerWidth < 768) { // Apply these changes only on mobile
-          if (isHidden) {
-            // Open menu: remove hidden, add mobile flex styles
-            navMenu.classList.remove('hidden');
-            navMenu.classList.add('flex', 'flex-col', 'space-y-2', 'p-4'); // Add padding here
-          } else {
-            // Close menu: add hidden, remove mobile flex styles
-            navMenu.classList.add('hidden');
-            navMenu.classList.remove('flex', 'flex-col', 'space-y-2', 'p-4'); // Remove padding here
-          }
-        } else { // For desktop sizes, just toggle hidden (though Tailwind md: classes should handle visibility)
-           // This part might not be strictly necessary if md:flex handles it, but good for clarity
-           if (isHidden) {
-             navMenu.classList.remove('hidden');
-           } else {
-             navMenu.classList.add('hidden');
-           }
+        // Only run on mobile widths
+        if (window.innerWidth < 768) {
+            const isHidden = navMenu.classList.contains('hidden');
+            if (isHidden) {
+              openMobileMenu();
+            } else {
+              closeMobileMenu();
+            }
         }
       };
 
-      navToggle.addEventListener('click', toggleMobileMenu);
+      // Add event listeners
+      if (navToggle) { // Check if element exists
+        navToggle.addEventListener('click', toggleMobileMenu);
+      }
+      // Only add listener for navClose if the element actually exists in the HTML
+      if (navClose) { // Check if element exists
+        navClose.addEventListener('click', closeMobileMenu);
+      }
 
       // Optional: close menu when a link is clicked (mobile UX)
       navMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           if (window.innerWidth < 768) {
-            // Close menu: explicitly set to hidden and remove mobile flex styles
-            navMenu.classList.add('hidden');
-            navMenu.classList.remove('flex', 'flex-col', 'space-y-2', 'p-4');
+            closeMobileMenu();
           }
         });
       });
 
-      // Handle window resize to apply correct desktop/mobile state
+      // Close menu when resizing to desktop
       window.addEventListener('resize', () => {
         if (window.innerWidth >= 768) {
-          // On desktop, ensure menu is visible and in flex-row mode
-          navMenu.classList.remove('hidden', 'flex', 'flex-col', 'space-y-2', 'p-4');
-          navMenu.classList.add('md:flex', 'md:flex-row'); // Ensure desktop flex styles are active
-        } else {
-           // On mobile, if menu is not currently hidden, apply mobile flex styles
-           // This handles cases where window is resized from desktop to mobile while menu is open
-          if (!navMenu.classList.contains('hidden')) {
-             navMenu.classList.add('flex', 'flex-col', 'space-y-2', 'p-4');
-             navMenu.classList.remove('md:flex', 'md:flex-row'); // Remove desktop flex styles
-          }
+          // On desktop, ensure mobile menu is hidden and reset state
+          navMenu.classList.add('hidden', 'opacity-0', 'scale-95');
+          navMenu.classList.remove('opacity-100', 'scale-100');
         }
       });
 
-       // Initial check on page load
-       if (window.innerWidth >= 768) {
-         navMenu.classList.remove('hidden');
-         navMenu.classList.add('md:flex', 'md:flex-row');
-       }
+       // Initial check on page load: ensure mobile menu is hidden and reset state initially
+       navMenu.classList.add('hidden', 'opacity-0', 'scale-95');
+       navMenu.classList.remove('opacity-100', 'scale-100');
 
     </script>
 </body>

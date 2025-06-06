@@ -12,7 +12,7 @@
 </head>
 <body class="min-h-screen flex flex-col bg-white dark:bg-gray-900 transition-colors duration-700">
     <header class="bg-white/95 dark:bg-gray-900/95 shadow-lg sticky top-0 z-50 backdrop-blur-sm">
-        <nav class="container mx-auto px-4 md:px-0 flex justify-between items-center py-4">
+        <nav class="container mx-auto px-4 flex justify-between items-center py-4">
             
             <a href="/" class="flex items-center">
                 <img src="/assets/images/logo.png" alt="SHIRE logo" class="h-36 w-auto">
@@ -24,13 +24,27 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
             </button>
-            <!-- Navigation links -->
-            <div id="nav-menu" class="hidden md:flex md:flex-row md:items-center md:space-x-8 absolute md:static top-20 left-0 w-full md:w-auto bg-white/95 dark:bg-gray-900/95 md:bg-transparent md:dark:bg-transparent z-50 md:z-auto shadow-lg md:shadow-none rounded-b-2xl md:rounded-none transition-all duration-300">
+
+            <!-- Desktop Navigation Links - Hidden on mobile -->
+            <div class="hidden md:flex md:flex-row md:items-center md:space-x-4 md:ml-auto">
+                <a href="/" class="nav-link">Home</a>
                 <a href="/projects" class="nav-link">Projects</a>
                 <a href="/courses" class="nav-link">Courses</a>
                 <a href="/about" class="nav-link">About</a>
                 <a href="/contact" class="nav-link">Contact</a>
             </div>
+
+            <!-- Mobile Navigation Menu (Dropdown) - Only visible on mobile -->
+            <div id="nav-menu" class="hidden absolute top-full right-0 mt-2 w-48 bg-white dark:bg-gray-900 shadow-lg rounded-md p-2 md:hidden opacity-0 scale-95 transition-all duration-200 ease-in-out transform origin-top-right">
+              <nav class="flex flex-col space-y-1">
+                  <a href="/" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Home</a>
+                  <a href="/projects" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Projects</a>
+                  <a href="/courses" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Courses</a>
+                  <a href="/about" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">About</a>
+                  <a href="/contact" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Contact</a>
+              </nav>
+            </div>
+
         </nav>
     </header>
     <main class="flex-grow">
@@ -103,23 +117,15 @@
 </style> 
     </main>
     <footer class="bg-transparent py-8">
-        <div class="container flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="text-xl font-bold text-primary-600 mb-2 md:mb-0">SHIRE</div>
-            <div class="flex space-x-8">
-                <a href="/contact" class="flex items-center text-gray-500 hover:text-primary-600 transition-colors duration-300">
-                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12H8m8 0a4 4 0 11-8 0 4 4 0 018 0zm8 4v1a3 3 0 01-3 3H7a3 3 0 01-3-3v-1"></path></svg>
-                    Contact
-                </a>
-                <a href="/projects" class="flex items-center text-gray-500 hover:text-primary-600 transition-colors duration-300">
-                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-6a2 2 0 012-2h2a2 2 0 012 2v6m-6 0h6"></path></svg>
-                    Projects
-                </a>
-                <a href="/about" class="flex items-center text-gray-500 hover:text-primary-600 transition-colors duration-300">
-                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.485 0 4.797.657 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    About
-                </a>
+        <div class="container flex flex-col items-center gap-4">
+            
+            <a href="/" class="flex items-center">
+                <img src="/assets/images/logo.png" alt="SHIRE logo" class="h-36 w-auto">
+            </a>
+            
+            <div class="text-gray-400 text-sm mt-2 md:mt-0 text-center">
+                &copy; 2025 SHIRE Company. All rights reserved.
             </div>
-            <div class="text-gray-400 text-sm mt-2 md:mt-0">&copy; 2025 Muse Shire. All rights reserved.</div>
         </div>
     </footer>
     <style>
@@ -170,64 +176,71 @@
       // Hamburger menu toggle
       const navToggle = document.getElementById('nav-toggle');
       const navMenu = document.getElementById('nav-menu');
+      const navClose = document.getElementById('nav-close'); // Get the close button (if it exists)
+
+      // Function to open the mobile menu with transition
+      const openMobileMenu = () => {
+        navMenu.classList.remove('hidden');
+        // Use requestAnimationFrame to allow the browser to render the display change before triggering the transition
+        requestAnimationFrame(() => {
+          navMenu.classList.remove('opacity-0', 'scale-95');
+          navMenu.classList.add('opacity-100', 'scale-100');
+        });
+      };
+
+      // Function to close the mobile menu with transition
+      const closeMobileMenu = () => {
+        navMenu.classList.remove('opacity-100', 'scale-100');
+        navMenu.classList.add('opacity-0', 'scale-95');
+        // Wait for the transition to finish before hiding the element completely
+        navMenu.addEventListener('transitionend', function handler() {
+          navMenu.classList.add('hidden');
+          navMenu.removeEventListener('transitionend', handler);
+        }, { once: true }); // Use { once: true } to auto-remove the listener
+      };
 
       const toggleMobileMenu = () => {
-        const isHidden = navMenu.classList.contains('hidden');
-        
-        if (window.innerWidth < 768) { // Apply these changes only on mobile
-          if (isHidden) {
-            // Open menu: remove hidden, add mobile flex styles
-            navMenu.classList.remove('hidden');
-            navMenu.classList.add('flex', 'flex-col', 'space-y-2', 'p-4'); // Add padding here
-          } else {
-            // Close menu: add hidden, remove mobile flex styles
-            navMenu.classList.add('hidden');
-            navMenu.classList.remove('flex', 'flex-col', 'space-y-2', 'p-4'); // Remove padding here
-          }
-        } else { // For desktop sizes, just toggle hidden (though Tailwind md: classes should handle visibility)
-           // This part might not be strictly necessary if md:flex handles it, but good for clarity
-           if (isHidden) {
-             navMenu.classList.remove('hidden');
-           } else {
-             navMenu.classList.add('hidden');
-           }
+        // Only run on mobile widths
+        if (window.innerWidth < 768) {
+            const isHidden = navMenu.classList.contains('hidden');
+            if (isHidden) {
+              openMobileMenu();
+            } else {
+              closeMobileMenu();
+            }
         }
       };
 
-      navToggle.addEventListener('click', toggleMobileMenu);
+      // Add event listeners
+      if (navToggle) { // Check if element exists
+        navToggle.addEventListener('click', toggleMobileMenu);
+      }
+      // Only add listener for navClose if the element actually exists in the HTML
+      if (navClose) { // Check if element exists
+        navClose.addEventListener('click', closeMobileMenu);
+      }
 
       // Optional: close menu when a link is clicked (mobile UX)
       navMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           if (window.innerWidth < 768) {
-            // Close menu: explicitly set to hidden and remove mobile flex styles
-            navMenu.classList.add('hidden');
-            navMenu.classList.remove('flex', 'flex-col', 'space-y-2', 'p-4');
+            closeMobileMenu();
           }
         });
       });
 
-      // Handle window resize to apply correct desktop/mobile state
+      // Close menu when resizing to desktop
       window.addEventListener('resize', () => {
         if (window.innerWidth >= 768) {
-          // On desktop, ensure menu is visible and in flex-row mode
-          navMenu.classList.remove('hidden', 'flex', 'flex-col', 'space-y-2', 'p-4');
-          navMenu.classList.add('md:flex', 'md:flex-row'); // Ensure desktop flex styles are active
-        } else {
-           // On mobile, if menu is not currently hidden, apply mobile flex styles
-           // This handles cases where window is resized from desktop to mobile while menu is open
-          if (!navMenu.classList.contains('hidden')) {
-             navMenu.classList.add('flex', 'flex-col', 'space-y-2', 'p-4');
-             navMenu.classList.remove('md:flex', 'md:flex-row'); // Remove desktop flex styles
-          }
+          // On desktop, ensure mobile menu is hidden and reset state
+          navMenu.classList.add('hidden', 'opacity-0', 'scale-95');
+          navMenu.classList.remove('opacity-100', 'scale-100');
         }
       });
 
-       // Initial check on page load
-       if (window.innerWidth >= 768) {
-         navMenu.classList.remove('hidden');
-         navMenu.classList.add('md:flex', 'md:flex-row');
-       }
+       // Initial check on page load: ensure mobile menu is hidden and reset state initially
+       navMenu.classList.add('hidden', 'opacity-0', 'scale-95');
+       navMenu.classList.remove('opacity-100', 'scale-100');
 
     </script>
 </body>
