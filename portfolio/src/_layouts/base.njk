@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen flex flex-col bg-white dark:bg-gray-900 transition-colors duration-700">
+    <header class="bg-white/95 dark:bg-gray-900/95 shadow-lg sticky top-0 z-50 backdrop-blur-sm">
+        <nav class="container mx-auto px-4 flex justify-between items-center py-4">
+            {# Logo #}
+            <a href="/" class="flex items-center">
+                <img src="/assets/images/logo.png" alt="SHIRE logo" class="h-36 w-auto">
+            </a>
+
+            {# Hamburger menu button (mobile) - Hidden on md and up #}
+            <button id="nav-toggle" class="md:hidden text-gray-700 dark:text-gray-200 focus:outline-none" aria-label="Open menu">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+
+            <!-- Desktop Navigation Links - Hidden on mobile -->
+            <div class="hidden md:flex md:flex-row md:items-center md:space-x-4 md:ml-auto">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/projects" class="nav-link">Projects</a>
+                <a href="/courses" class="nav-link">Courses</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/contact" class="nav-link">Contact</a>
+            </div>
+
+            <!-- Mobile Navigation Menu (Dropdown) - Only visible on mobile -->
+            <div id="nav-menu" class="hidden absolute top-full right-0 mt-2 w-48 bg-white dark:bg-gray-900 shadow-lg rounded-md p-2 md:hidden opacity-0 scale-95 transition-all duration-200 ease-in-out transform origin-top-right">
+              <nav class="flex flex-col space-y-1">
+                  <a href="/" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Home</a>
+                  <a href="/projects" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Projects</a>
+                  <a href="/courses" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Courses</a>
+                  <a href="/about" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">About</a>
+                  <a href="/contact" class="nav-link block px-2 py-1 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded">Contact</a>
+              </nav>
+            </div>
+
+        </nav>
+    </header>
+    <main class="flex-grow">
+        {{ content | safe }}
+    </main>
+    <footer class="bg-transparent py-8">
+        <div class="container flex flex-col items-center gap-4">
+            {# Logo instead of text #}
+            <a href="/" class="flex items-center">
+                <img src="/assets/images/logo.png" alt="SHIRE logo" class="h-36 w-auto">
+            </a>
+            {# Removed navigation links div #}
+            <div class="text-gray-400 text-sm mt-2 md:mt-0 text-center">
+                &copy; 2025 SHIRE Company. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <style>
+      /* Existing styles... */
+      .nav-link {
+        @apply relative block px-6 py-3 md:p-0 text-gray-700 dark:text-gray-200 transition-colors duration-200;
+        position: relative;
+        display: inline-block;
+      }
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #0087ca;
+        @apply bg-orange-600 dark:bg-orange-400;
+        transform-origin: bottom right;
+        transition: transform 0.3s ease-out;
+      }
+      .nav-link:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+       .nav-link:hover {
+        @apply text-primary-600 dark:text-primary-400;
+      }
+      /* Existing keyframes... */
+      @keyframes fade-in {
+        to { opacity: 1; }
+      }
+      @keyframes bounce-slow {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+      /* Existing animation classes... */
+      .animate-fade-in {
+        opacity: 0;
+        animation: fade-in 1s forwards;
+      }
+      .animate-bounce-slow {
+        animation: bounce-slow 2.5s infinite;
+      }
+    </style>
+    <script>
+      // Hamburger menu toggle
+      const navToggle = document.getElementById('nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      const navClose = document.getElementById('nav-close'); // Get the close button (if it exists)
+
+      // Function to open the mobile menu with transition
+      const openMobileMenu = () => {
+        navMenu.classList.remove('hidden');
+        // Use requestAnimationFrame to allow the browser to render the display change before triggering the transition
+        requestAnimationFrame(() => {
+          navMenu.classList.remove('opacity-0', 'scale-95');
+          navMenu.classList.add('opacity-100', 'scale-100');
+        });
+      };
+
+      // Function to close the mobile menu with transition
+      const closeMobileMenu = () => {
+        navMenu.classList.remove('opacity-100', 'scale-100');
+        navMenu.classList.add('opacity-0', 'scale-95');
+        // Wait for the transition to finish before hiding the element completely
+        navMenu.addEventListener('transitionend', function handler() {
+          navMenu.classList.add('hidden');
+          navMenu.removeEventListener('transitionend', handler);
+        }, { once: true }); // Use { once: true } to auto-remove the listener
+      };
+
+      const toggleMobileMenu = () => {
+        // Only run on mobile widths
+        if (window.innerWidth < 768) {
+            const isHidden = navMenu.classList.contains('hidden');
+            if (isHidden) {
+              openMobileMenu();
+            } else {
+              closeMobileMenu();
+            }
+        }
+      };
+
+      // Add event listeners
+      if (navToggle) { // Check if element exists
+        navToggle.addEventListener('click', toggleMobileMenu);
+      }
+      // Only add listener for navClose if the element actually exists in the HTML
+      if (navClose) { // Check if element exists
+        navClose.addEventListener('click', closeMobileMenu);
+      }
+
+      // Optional: close menu when a link is clicked (mobile UX)
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth < 768) {
+            closeMobileMenu();
+          }
+        });
+      });
+
+      // Close menu when resizing to desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+          // On desktop, ensure mobile menu is hidden and reset state
+          navMenu.classList.add('hidden', 'opacity-0', 'scale-95');
+          navMenu.classList.remove('opacity-100', 'scale-100');
+        }
+      });
+
+       // Initial check on page load: ensure mobile menu is hidden and reset state initially
+       navMenu.classList.add('hidden', 'opacity-0', 'scale-95');
+       navMenu.classList.remove('opacity-100', 'scale-100');
+
+    </script>
+</body>
+</html> 
